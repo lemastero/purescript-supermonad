@@ -14,11 +14,12 @@ class (Functor m, Functor n, Functor p)
     -> p b
 
 class (Functor m) <= Return m where
-  return :: forall a b. a -> m b
+  return :: forall a. a -> m a
 
 class (Functor m, Functor n, Functor p)
       <= Apply m n p where
   apply :: forall a b. m (a -> b) -> n a -> p b
+
 
 instance maybeApply :: Apply Maybe Maybe Maybe where
   apply mab nb = mab <*> nb
